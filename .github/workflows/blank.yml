@@ -29,8 +29,7 @@ jobs:
 
       - name: Get latest Tag
         id: vars
-        run: |
-          echo ::set-output name=tags::$(git describe --tags $(git rev-list --tags --max-count=1))
+        run: echo "tag=$(git describe --tags $(git rev-list --tags --max-count=1))" >> $GITHUB_OUTPUT
 
       - name: Print tag
-        run: echo ${{ steps.vars.outputs.tags }}
+        run: echo ${{ steps.vars.outputs.tag }}
